@@ -16,8 +16,6 @@ Description=Voila Model App
 ExecStart=/srv/Model/venv/bin/voila --port=8877 /srv/Model/AI-OPADS-MODEL/MeinModelNotebook.ipynb --no-browser --enable_nbextensions=True
 WorkingDirectory=/srv/Model/AI-OPADS-MODEL
 Restart=always
-User=www-data
-Group=www-data
 
 [Install]
 WantedBy=multi-user.target
@@ -34,3 +32,32 @@ location /model/ {
     proxy_set_header X-Forwarded-Proto $scheme;
 }
 ```
+
+
+Für das spätere Anlegen von Usern und Gruppen:
+
+
+sudo adduser --system --group --home /srv/Model/voila voila-model
+
+
+    --system: Erstellt einen Systembenutzer (kein Login über SSH).
+    --group: Erstellt eine gleichnamige Gruppe.
+    --home: Legt ein eigenes Home-Verzeichnis fest.
+    
+
+Damit der neue User im Service-Verzeichnis arbeiten kann:
+
+sudo chown -R voila-model:voila-model /srv/Model
+
+
+In deiner voila-model.service:
+
+INI
+
+[Service]
+User=voila-model
+Group=voila-model
+WorkingDirectory=/srv/Model/AI-OPADS-MODEL
+ExecStart=/srv/Model/venv/bin/voila --port=8877 /srv/Model/AI-OPADS-MODEL/LOS_Prediction.ipynb --no-browser --base_url=/Model/
+Restart=always
+
