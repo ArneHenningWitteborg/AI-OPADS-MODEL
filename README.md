@@ -16,8 +16,6 @@ Description=Voila Model App
 ExecStart=/srv/Model/venv/bin/voila --port=8877 /srv/Model/AI-OPADS-MODEL/MeinModelNotebook.ipynb --no-browser --enable_nbextensions=True
 WorkingDirectory=/srv/Model/AI-OPADS-MODEL
 Restart=always
-User=www-data
-Group=www-data
 
 [Install]
 WantedBy=multi-user.target
