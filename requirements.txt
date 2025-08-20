@@ -1,0 +1,8 @@
+pandas==2.2.2
+numpy>=2.0.0
+matplotlib>=3.8.0
+xgboost==1.4.2
+xlrd
+scikit-learn
+voila
+jupyter

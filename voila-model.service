@@ -1,0 +1,10 @@
+[Unit]
+Description=Voila Model App
+
+[Service]
+ExecStart=/srv/Model/venv/bin/voila --port=8877 /srv/Model/AI-OPADS-MODEL/LOS_Prediction.ipynb --no-browser --base_url=/Model/
+WorkingDirectory=/srv/Model/AI-OPADS-MODEL
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
